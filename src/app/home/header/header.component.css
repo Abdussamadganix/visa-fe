@@ -1,0 +1,8 @@
+.vdc-component-header-background {
+    background: #153570;
+    /* background: -o-linear-gradient(to top, #001c50, #143f8c);
+    background: -moz-linear-gradient(to top, #001c50, #143f8c);
+    background: -webkit-linear-gradient(to top, #001c50, #143f8c);
+    background: linear-gradient(to top, #001c50, #143f8c); */
+    color: #fff;
+  }

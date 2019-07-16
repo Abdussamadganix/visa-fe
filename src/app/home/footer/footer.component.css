@@ -1,0 +1,11 @@
+.xp-footer {
+    height: 20px;
+    padding: 5px;
+  }
+  
+  .xp-footer p {
+    text-align: center;
+    /* color: #222534; */
+    color: #00004d;
+    font-weight: 900;
+  }

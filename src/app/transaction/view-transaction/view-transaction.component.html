@@ -1,0 +1,360 @@
+<!-- navbar-->
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+      <li class="breadcrumb-item active">Transaction</li>
+    </ul>
+  </div>
+</div>
+<section>
+  <div class="container-fluid">
+    <br />
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <p style="font-size: 13px;">This feature will provide you with a summary of all payments made to your account.</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="row" [ngSwitch]="whichForm">
+      <div class="col-lg-12" *ngSwitchCase="'viewTransaction'">
+        <div class="col-lg-12">
+          <div style="border: 1px solid rgb(240, 236, 236) !important; padding: 15px">
+            <div class="row">
+              <div class="col-md-4" *ngIf="isMainMerchant === 1">
+                <div class="form-group">
+                  <label class="reg-label">Merchant</label>
+                  <!-- <select name="account" #merchantKey (change)="viewMerchantTransactions(0, $event.target.value)" class="form-control"> -->
+                  <select id="merchantKey" #merchantKey class="form-control">
+                    <option value="" disabled selected>Select Merchant</option>
+                    <option [value]="merchant.uniqueKey" *ngFor="let merchant of merchants">{{ merchant.name }}</option>
+                  </select>
+                  <!-- <input type="email" formControlName="email" placeholder="Business Type" class="form-control"> -->
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="reg-label">Transaction Ref</label>
+                  <input id="transactionId" placeholder="Transaction Ref" type="text" #transactionId
+                    class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="reg-label">Start Date</label>
+                  <input id="startDate" type="date" #startDate class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="reg-label">End date</label>
+                  <input id="endDate" type="date" #endDate class="form-control" />
+                </div>
+              </div>
+              <div class="col-md-1" *ngIf="isMainMerchant === 1">
+                <div class="form-group">
+                  <label class="reg-label">All</label>
+                  <input (change)="allTransaction($event)" id="all" type="checkbox"  #all class="form-control" style="border-color: red !important;" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1">
+                <div class="form-group">
+                  <input type="submit" (click)="newSearchTransaction()" value="Search">
+                </div>
+              </div>
+              <div class="col-md-1" *ngIf="viewDownloadButton">
+                <div class="form-group">
+                  <input type="button" (click)="downloadReportExcel()" value="download">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <input type="reset" (click)="resetForm()" value="reset">
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="card">
+            <div class="card-header">
+              <h4>Transactions</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover" *ngIf="transactions">
+                  <thead>
+                    <tr>
+                      <th class="">S/N</th>
+                      <th class="">Email</th>
+                      <th class="th-sm">Amount</th>
+                      <th class="">Currency</th>
+                      <th class="">Transaction Ref.</th>
+                      <th class="">Payment Key</th>
+                      <th class="">Payment Type</th>
+                      <th class="th-sm">Status</th>
+                      <th class="th-sm">Date</th>
+                      <!-- <th class=""></th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let transaction of transactions let i = index"
+                      (click)="viewTransactionDetails(transaction)">
+                      <td>{{ i + 1 }}</td>
+                      <td class="email"><a title="click here to veiw more details" style="color: cadetblue;">{{
+                          transaction.email }}</a></td>
+                      <td>{{ transaction.amount}}</td>
+                      <td>{{ transaction.currency}}</td>
+                      <td>{{ transaction.transactionReference}}</td>
+                      <td>{{ transaction.uniqueKey }}</td>
+                      <td>{{transaction.paymentType}}</td>
+                      <td>
+
+                          <h5><span class="xp-status status_success" *ngIf="transaction.paymentResponseCode =='000';">Successful</span></h5>
+                          <h5><span class="xp-status status_pending"
+                              *ngIf="transaction.paymentResponseCode =='08';">Pending</span></h5>
+                          <h5><span class="xp-status status_pending"
+                              *ngIf="transaction.paymentResponseCode =='098';">Pending</span></h5>
+                          <h5><span class="xp-status status_cancel"
+                              *ngIf="transaction.paymentResponseCode =='11';">Canceled</span></h5>
+                          <h5 *ngIf="transaction.paymentResponseCode =='099';"><span class="xp-status status_failed">Failed</span></h5>
+                          <h5 *ngIf="transaction.paymentResponseCode =='';"><span class="xp-status status_failed">Failed</span></h5>
+                          <h5 *ngIf="transaction.paymentResponseCode == null;"><span class="xp-status status_failed">Failed</span></h5>
+                      </td>
+                      <td>{{ transaction.createdAt}}</td>
+                      <!-- <td><button type="button" title="View Detail" class="btn btn-info btn-rounded" (click)="showForView(transaction)">
+                        View
+                      </button></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                <div>
+                  <div class="container">
+                      <div class="text-center">             
+                          <!-- pager -->
+                          <nav aria-label="Page navigation example">
+                          <ul *ngIf="pager.pages && pager.pages" class="pagination">
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                  <a class="page-link" (click)="newSearchTransaction(1, 'paginate')">First</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                  <a class="page-link" (click)="newSearchTransaction(pager.currentPage - 1, 'paginate')">Previous</a>
+                              </li>
+                              <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                  <a  class="page-link" (click)="newSearchTransaction(page, 'paginate')">{{page}}</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                  <a  class="page-link" (click)="newSearchTransaction(pager.currentPage + 1, 'paginate')">Next</a>
+                              </li>
+                              <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                  <a class="page-link" (click)="newSearchTransaction(pager.totalPages, 'paginate')">Last</a>
+                              </li>
+                          </ul>
+                          </nav>
+                      </div>
+                  </div>
+              </div>
+                <!-- <nav aria-label="Page navigation example">
+                  <ul class="pagination"> -->
+                    <!-- <li class="page-item" *ngFor="let page of pages" (click)="listOfUsers(1)"><a class="page-link" href="#">Previous</a></li> -->
+                    <!-- <li class="page-item" *ngIf=" pageNumber !== 1" (click)="viewTransactions(pageNum -1)"><a
+                        class="page-link">Previous</a></li>
+                    <li class="page-item" *ngFor="let page of pages" (click)="viewTransactions(page)"><a
+                        class="page-link">{{page}}</a></li>
+
+                    <li class="page-item" *ngIf="lastPage !== true" (click)="viewTransactions(pageNum +1)"><a
+                        class="page-link">Next</a></li> -->
+                    <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                  <!-- </ul>
+                </nav> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 " *ngSwitchCase="'viewSingleTransactionDetails'">
+        <div class="row" style="font-size: 12px">
+          <div class="col-6 col-md-8 xp-trans"
+            style=" background-color: rgb(255,255,255); grid-gap: 20px; padding: 10px">
+            <a (click)="goBack()" href="javascript:void(0)">Back To Transactions</a>
+            <p>NGN {{transaction.amount}}</p>
+            <p>Payment from {{transaction.email}}</p>
+          </div>
+          <!-- <div class="col-6 col-md-4" style="background-color: #FFFFFF; grid-gap: 10px; padding: 20px ">
+          </div> -->
+          <div class="col-6 col-md-4" style=" background-color: #FFFFFF; grid-gap: 10px; padding: 20px ">
+            <p><b>Date :</b> {{transaction.createdAt}}</p> <br />
+            <span *ngIf="transaction.paymentResponseCode =='000';then condition1 else condition2"></span>
+            <ng-template #condition1>
+              <h5><span class="xp-status status_success">Successful</span></h5>
+            </ng-template>
+            <ng-template #condition2>
+              <h5><span class="xp-status status_pending"
+                  *ngIf="transaction.paymentResponseCode =='08'; else condition3">Pending</span></h5>
+            </ng-template>
+            <ng-template #condition3>
+              <h5><span class="xp-status status_cancel"
+                  *ngIf="transaction.paymentResponseCode =='11'; else condition4">Canceled</span></h5>
+            </ng-template>
+            <ng-template #condition4>
+              <h5><span class="xp-status status_failed">Failed</span></h5>
+            </ng-template>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-6 col-md-3" style="background-color: #FFFFFF; grid-gap: 10px; padding: 10px;">
+            <div>
+              <p><b>Transaction Id</b></p>
+            </div>
+            <div>
+              <p>{{transaction.transactionReference}}</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-4" style="background-color: #FFFFFF; grid-gap: 10px; padding: 10px;">
+            <div>
+              <p><b>Payment Reference</b></p>
+            </div>
+            <div>
+              <p>{{transaction.paymentReference}}</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3" style="background-color: #FFFFFF; grid-gap: 10px; padding: 10px;">
+            <div>
+              <p><b>Amount</b></p>
+            </div>
+            <div>
+              <p>{{transaction.amount}}</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-2" style="background-color: #FFFFFF; grid-gap: 10px; padding: 10px;">
+          </div>
+        </div>
+        <br />
+        <!-- <div class="row">
+          <div class="col-12 col-md-6">
+            <h5>
+              <p style="float: left">Customer Data</p>
+            </h5>
+          </div>
+          <div class="col-12 col-md-1"></div>
+          <div class="col-12 col-md-5">
+            <h5>
+              <p style="float: left">Transaction Log</p>
+            </h5>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-6 col-md-6">
+            <div class="mdb-card">
+              <div class="card-header">
+                <p><b>Customer Data</b></p>
+              </div>
+              <div class="card-body" style="background-color: #FFFFFF;font-size: 15px;grid-gap: 10px; padding: 10px;">
+                <div class="row">
+                  <div class="col-md-7">
+                    <p><b>Email Address</b></p>
+                    <p>{{transaction.email}}</p>
+                    <p><b>Customer Name</b></p>
+                    <p>{{transaction.firstName }} {{transaction.lastName }}</p>
+                  </div>
+                  <div class="col-md-5">
+                    <p><b>Phone Number</b></p>
+                    <p>{{transaction.phoneNumber}}</p>
+                    <p><b>Date</b></p>
+                    <p>{{transaction.createdAt}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br /><br />
+            <div class="mdb-card">
+              <div class="card-header">
+                <b> Payment Type Information </b>
+              </div>
+              <div class="card-body" style="background-color: #FFFFFF;font-size: 15px;grid-gap: 10px; padding: 10px;">
+                <div class="row">
+                  <div class="col-md-7" *ngIf="transaction.paymentType == 'CARD'">
+                    <p><b>Card Type</b></p>
+                    <p>{{transaction.type}}</p>
+                    <p><b>Card Number</b></p>
+                    <p>{{transaction.maskedPan}}</p>
+                  </div>
+                  <div class="col-md-5">
+
+                    <div *ngIf="transaction.paymentType == 'CARD'">
+                      <p *ngIf="transaction.paymentType == 'CARD'"><b>Card Expiry</b></p>
+                      <p *ngIf="transaction.paymentType == 'CARD'">{{transaction.expiryMonth}} /
+                        {{transaction.expiryYear}}</p>
+                    </div>
+                    <div *ngIf="transaction.paymentType == 'ACCOUNT'">
+                      <p style="float: left">Account Number</p>
+                      <p style="float: left">{{transaction.accountNumber}}</p>
+                    </div>
+                    <div *ngIf="transaction.paymentType == 'WALLET'">
+                      <p><b>Transaction Type</b></p>
+                      <p>Wallet</p>
+                    </div>
+                    <div *ngIf="transaction.paymentType == 'QR'">
+                      <p><b>Transaction Type</b></p>
+                      <p>QR</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br /><br />
+            <div class="mdb-card">
+              <div class="card-header">
+                Device Information
+              </div>
+              <div class="card-body" style="background-color: #FFFFFF;font-size: 15px;grid-gap: 10px; padding: 10px;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p><b>Device Fingerprint</b></p>
+                    <p>{{transaction.deviceFingerPrint}} </p>
+                    <p><b>IP Address</b></p>
+                    <p>{{transaction.ip}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-6 col-md-6">
+            <div class="mdb-card">
+              <div class="card-body">
+           
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="col-1 col-md-1">
+          </div> -->
+          <div class="col-6 col-md-6 scroll">
+            <div class="mdb-card">
+              <div class="card-header">
+                <p><b>Transaction Log</b></p>
+              </div>
+              <div class="card-body" style="background-color: #FFFFFF;font-size: 15px;grid-gap: 10px; padding: 10px;">
+                <!-- <p style="float: left">Transaction Insights</p>
+                <p>Transaction Insights</p>
+                <p>Transaction Insights</p>
+                <p>Transaction Insights</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ngx-spinner
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="ball-scale-multiple">
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

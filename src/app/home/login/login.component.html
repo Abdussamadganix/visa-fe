@@ -1,0 +1,61 @@
+<div class="login">
+  <div class="container" style="padding-top:120px;">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="login-logo-wrapper">
+          <img class="logo" src="../../../assets/images/blupay_logo.png" />
+        </div>
+        <div class="card" style="border-radius: 3px !important;">
+          <h2 class="card-header info-color white-text text-center py-4" style="border-top-right-radius: 3px; border-top-left-radius: 3px;">
+            <strong>Sign In</strong>
+          </h2>
+          <div class="card-body">
+            <div *ngIf="errorMessage" class="alert alert-danger"> {{ errorMessage }}</div>
+            <div *ngIf="successMessage" class="alert alert-danger"> {{ successMessage }}</div>
+            <form [formGroup]="authenticationForm" (ngSubmit)="authUser(authenticationForm.value)" class="text-center">
+              <div class="form-group">
+                <label style="float: left;">Email</label>
+                <input type="email" formControlName="email" placeholder="Email Address" class="form-control">
+              </div>
+              <div class="form-group">
+                <label style="float: left;">Password</label>
+                <input type="password" formControlName="password" placeholder="Password" class="form-control">
+              </div>
+              <div class="form-group">
+                <span style="float: left;">Remember me
+                  <label class="switch">
+                    <input formControlName="remermberMe" type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+                <a class="backHome" style="color: #FF6A2F !important; font-size: 0.8rem !important;" routerLink="/forgotPassword">Forgot
+                  password?</a>
+              </div>
+              <div class="form-group" style="float: left;">
+                <button type="submit" style="background: #222534 !important; border-color: none !important;" class="btn btn-primary">Sign In</button>
+              </div>
+            </form>
+            <br/><br/>
+            <p>Not a member?
+              <a class="backHome" style="color: #222534 !important;" routerLink="/register">Sign Up</a>
+            </p>
+            <a class="backHome">
+              <i (click)="backToHome()" class="fas fa-home" style="float: right;" title="back to home page"></i>
+            </a>
+          </div>
+          <!-- Form -->
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>
+<ngx-spinner
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="ball-scale-multiple">
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+

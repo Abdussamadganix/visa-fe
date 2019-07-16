@@ -1,0 +1,580 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Montserrat;
+}
+
+$color-red: #FF0000;
+$color-green: #00FF00;
+$color-blue: #0000FF;
+$xp-color-orange: #fc6d01;
+$xp-color-green: #026c03;
+$padding: 15px;
+$margin: 15px;
+
+.xp-nav-logo {
+    padding: 10px;
+    position: absolute;
+    left: 80px;
+    top: 20px;
+}
+
+.xp-header {
+    height: 85px;
+    background: #ffffff;
+}
+
+u {
+    text-decoration: none;
+    border-bottom: 4px solid #fc6c00;
+}
+
+.navbar-brand {
+    height: 65px !important;
+    margin: 0px 0px 0px 80px !important;
+    padding: 0px !important;
+
+    img {
+        height: 60px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+}
+
+.navbar-brand {
+    height: 65px !important;
+    margin: 0px 0px 0px 80px !important;
+    padding: 0px !important;
+}
+
+.navbar-brand img {
+    height: 60px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.xp-main {
+    height: 100hv;
+    background: #969b94;
+    width: 100% !important;
+    // background-image: url('../../images/image.png');
+
+    img {
+        margin-top: 85px;
+        padding: 0px;
+        height: 100%;
+        width: 100% !important;
+        background: #006e01;
+        opacity: 0.9;
+    }
+}
+
+.navbar-dark .navbar-toggler {
+    color: #006e01 !important;
+    border-color: #fc6c00 !important;
+}
+
+
+.xp-main-header {
+    position: absolute;
+    top: 200px;
+    padding: 100px;
+    // style="color: #fff;font-size: 45px;font-weight: 700;"
+    h1 {
+        font-weight: 900;
+        color: #ffffff;
+        font-size: 45px;
+        font-stretch: ultra-expanded;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 23px;
+        color: aliceblue;
+        text-align: left;
+    }
+    
+    a {
+        text-decoration: none;
+        height: 42px;
+        background: #222534  !important;
+        border-radius: 30px;
+        padding: 6px 12px;
+        color: #ffffff;
+        font-size: 20px;
+    }
+}
+
+.nav-item {
+    .nav-link {
+        color: #ffffff !important;
+        font-weight: 700;
+        // font-size: 15px;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+.xp-leader-main {
+    width: 600px;
+    position: absolute;
+    left: 100px;
+    top: 130px;
+
+    .xp-leader-text {
+        font-family: Roboto, sans-serif, Arial, Helvetica;
+        font-size: 62px;
+        font-weight: 900;
+        font-style: normal;
+        color: #fff;
+        -webkit-animation-duration: 2s;
+        animation-duration: 2s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: 1;
+        -webkit-animation-iteration-count: 1;
+        animation-name: heartBeat;
+        -moz-animation-name: heartBeat;
+
+        .xp-leader-text span:hover {
+            cursor: pointer;
+            animation-name: bounce;
+            -moz-animation-name: bounce;
+        }
+    }
+}
+
+
+/**=============== login section =======================*/
+.login-logo-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 32%;
+    height: 60px;
+
+    .logo {
+        height: 40px;
+    }
+}
+
+.sweet-alert {
+
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    /* Stay in place */
+    z-index: 99999;
+    /* Sit on top */
+    left: 0;
+    font-size: 14px !important;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    padding: 60px;
+}
+
+@keyframes bounce {
+
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    40% {
+        -webkit-transform: translateY(-30px);
+        -ms-transform: translateY(-30px);
+        transform: translateY(-30px)
+    }
+
+    60% {
+        -webkit-transform: translateY(-15px);
+        -ms-transform: translateY(-15px);
+        transform: translateY(-15px)
+    }
+}
+
+@keyframes right_to_left {
+    from {
+        margin-left: 100%;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+@keyframes left_to_right {
+    from {
+        margin-left: -100%;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+.xp-get-started {
+    position: absolute;
+    top: 380px;
+    color: white;
+    left: 400px;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    animation-name: zoomIn;
+    -moz-animation-name: zoomIn;
+
+    .xp-start {
+        display: inline-block;
+        padding: 20px;
+
+        a {
+            color: white;
+        }
+    }
+}
+
+.xp-main-footer {
+    height: 100px;
+    width: 100%;
+    background-color: black;
+
+    p {
+        font-weight: 200px;
+    }
+}
+
+
+.partner {
+    height: 200px;
+    width: 100%;
+}
+
+.xp-deep-green {
+    background-color: $xp-color-green !important;
+}
+
+.xp-deep-orange {
+    background-color: $xp-color-orange !important;
+}
+
+p.xp-block-text {
+    text-align: justify !important;
+}
+
+.xp-section {
+    padding: 70px 110px;
+}
+
+.xp-payments {
+    background: #006e01;
+
+    .xp-payment-right {
+        p {
+            font-size: 22px;
+            color: aliceblue;
+            text-align: right
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #ffffff;
+            text-align: right;
+        }
+    }
+}
+
+.xp-customer {
+    img {
+        height: 200px;
+        width: 200px;
+        margin-left: 50px;
+    }
+
+    p {
+        font-size: 22px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+}
+
+.xp-about img {
+    margin-left: 30px;
+    height: 550px;
+    width: 550px;
+}
+
+.xp-payments {
+    .xp-payment-left {
+        img {
+            height: 250px;
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        p {
+            font-size: 22px;
+            color: aliceblue;
+            text-align: left;
+        }
+    }
+
+    .xp-payment-right {
+        img {
+            height: 200px;
+            width: 300px;
+        }
+    }
+}
+
+.xp-customer {
+    background: white;
+}
+
+.xp-customer h1 {
+    text-align: center;
+    font-size: 40px;
+    font-stretch: ultra-expanded;
+}
+
+.xp-customer p {
+    text-align: center;
+    font-size: 20px;
+}
+
+.xp-about {
+    background: #006e01;
+}
+
+
+.xp-about h1 {
+    color: white;
+    font-size: 40px;
+    margin-bottom: 20px;
+
+}
+
+.xp-about p {
+    color: rgb(230, 235, 240);
+    font-size: 25px;
+    font-stretch: extra-expanded;
+    font-weight: lighter;
+    /* text-align: justify; */
+    line-height: 35px;
+}
+
+u {
+    text-decoration: none;
+    border-bottom: 4px solid #fc6c00;
+}
+
+.xp-register1 {
+    text-decoration: none !important;
+    height: 45px !important;
+    background: #fc6c00 !important;
+    border-radius: 30px !important;
+    padding: 7px 15px !important;
+    color: #ffffff !important;
+    font-size: 20px !important;
+    margin: 0 auto;
+}
+
+.xp-footer {
+    height: 20px;
+    padding: 5px;
+}
+
+.xp-footer p {
+    text-align: center;
+    color: #222534;
+    font-weight: 900;
+}
+
+.terms{
+    width: 100%;
+    padding: 120px;
+   background: #f3f3f3!important;
+  }
+  .terms p {
+      text-align: justify;
+      font-size: 14px;
+      letter-spacing: .2px;
+      line-height: 24px;
+      padding-top: 20px;
+      /* margin: 10px 0; */
+    }
+
+
+
+@media screen and (max-width: 781px) {
+    .xp-main {
+        height: 360px !important;
+        width: 100% !important;
+
+        img {
+            margin-top: 80px;
+            height: 280px !important;
+        }
+
+        h1 {}
+    }
+
+    .navbar-brand {
+        height: 65px !important;
+        margin: 0px 0px 0px 20px !important;
+        padding: 0px !important;
+
+        img {
+            height: 60px !important;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+    }
+
+    .xp-header {
+        height: 55px;
+        background: #ffffff;
+    }
+
+    .xp-main-header {
+        position: absolute;
+        top: 85px;
+        padding: 22px;
+
+        h1 {
+            font-weight: 900;
+            color: #ffffff;
+            font-size: 20px;
+            font-stretch: ultra-expanded;
+        }
+
+        p {
+            font-size: 18px;
+            color: aliceblue;
+            text-align: left;
+        }
+
+        a {
+            text-decoration: none;
+            height: 42px;
+            background: #fc6c00 !important;
+            border-radius: 30px;
+            padding: 6px 12px;
+            color: #ffffff;
+            font-size: 20px;
+        }
+    }
+
+    .xp-section {
+        padding: 50px 20px;
+    }
+
+    .xp-payments {
+        .xp-payment-left {
+            img {
+                height: 250px;
+                width: 300px;
+            }
+
+            h1 {
+                font-size: 25px;
+                color: #ffffff;
+                text-align: left;
+            }
+
+            p {
+                font-size: 18px;
+                color: aliceblue;
+                text-align: left;
+            }
+        }
+
+        .xp-payment-right {
+            img {
+                height: 150px;
+                width: 200px;
+            }
+
+            h1 {
+                font-size: 25px;
+                color: #ffffff;
+                text-align: left;
+            }
+
+            p {
+                font-size: 18px;
+                color: aliceblue;
+                text-align: left;
+            }
+        }
+    }
+
+    .xp-customer {
+        img {
+            height: 200px;
+            width: 200px;
+            margin-left: 50px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+    }
+
+    .terms{
+        padding: 120px 20px;
+      }
+
+    .xp-about {
+        .about-left {
+            h1 {
+                font-size: 25px;
+                text-align: center !important;
+            }
+
+            p {
+                font-size: 18px;
+                text-align: left;
+            }
+        }
+
+        .about-right {
+            margin: 0px;
+            padding: 0px;
+
+            img {
+                float: left;
+                margin: 0px;
+                padding: 0px;
+                width: 310px !important;
+                height: 250px;
+            }
+        }
+    }
+}
