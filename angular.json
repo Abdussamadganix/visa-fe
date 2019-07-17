@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "xpresspay-v3": {
+    "visa-fe": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/xpresspay-v3",
+            "outputPath": "dist/visa-fe",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,18 +54,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "xpresspay-v3:build"
+            "browserTarget": "visa-fe:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "xpresspay-v3:build:production"
+              "browserTarget": "visa-fe:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "xpresspay-v3:build"
+            "browserTarget": "visa-fe:build"
           }
         },
         "test": {
@@ -99,7 +99,7 @@
         }
       }
     },
-    "xpresspay-v3-e2e": {
+    "visa-fe-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -108,11 +108,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "xpresspay-v3:serve"
+            "devServerTarget": "visa-fe:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "xpresspay-v3:serve:production"
+              "devServerTarget": "visa-fe:serve:production"
             }
           }
         },
@@ -128,5 +128,5 @@
       }
     }
   },
-  "defaultProject": "xpresspay-v3"
+  "defaultProject": "visa-fe"
 }
