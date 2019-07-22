@@ -287,13 +287,13 @@ p.xp-block-text {
     .xp-payment-right {
         p {
             font-size: 22px;
-            color: aliceblue;
+            color: #222222;
             text-align: right
         }
 
         h1 {
             font-size: 40px;
-            color: #ffffff;
+            color: #222222;
             text-align: right;
         }
     }
@@ -326,17 +326,18 @@ p.xp-block-text {
         img {
             height: 250px;
             width: 300px;
+            opacity: 0.8;
         }
 
         h1 {
             font-size: 40px;
-            color: #ffffff;
+            color: #222222;
             text-align: left;
         }
 
         p {
             font-size: 22px;
-            color: aliceblue;
+            color: #222222;
             text-align: left;
         }
     }
