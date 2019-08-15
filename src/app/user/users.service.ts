@@ -55,7 +55,6 @@ constructor(private dataService: DataService) { }
       catchError(this.handleError));
     }
 
-
     private handleError(error: Response | any) {
       return throwError(error);
     }

@@ -7,9 +7,9 @@
         <div class="img-fluid rounded-circle"
           style="height: 60px; width: 60px; background: wheat;margin-left: 20px; font-weight: 900; font-size: 2.5rem;">X
         </div>
-        <h2 class="h5">
-          <p>{{ fullName }}</p>
-        </h2><span>{{ user.roleName }}</span>
+        <!-- <h2 class="h5"> -->
+          <!-- <p>{{ fullName }}</p>
+        </h2><span>{{ user.roleName }}</span> -->
       </div>
       <!-- Small Brand information, appears on minimized sidebar-->
       <div class="sidenav-header-logo">
@@ -22,36 +22,13 @@
     <div class="main-menu">
       <h5 class="sidenav-heading">Main</h5>
       <ul id="side-main-menu" class="side-menu list-unstyled">
-        <li><a [class.disabled]="isRegistration ? true : null" routerLink="/dashboard"> <i
-              class="icon-home"></i>Home</a></li>
-        <li *ngIf="menu.indexOf('merchant_index') !=-1"><a routerLink="/merchant/view"> <i
+          <li><a routerLink="/dashboard"> <i class="icon-home"></i>Home</a></li>
+        <li><a routerLink="/merchant"> <i
               class="icon-form"></i>Merchant</a></li>
-        <!-- <li *ngIf="menu.indexOf('merchant_index') !=-1"><a routerLink="/pg/setup"> <i class="icon-form"></i>Pg Setup</a></li> -->
-        <li
-          *ngIf="menu.indexOf('provider_index') !=-1 || menu.indexOf('card_transaction_settings_index') !=-1 || menu.indexOf('bin_view') !=-1">
-          <a [class.disabled]="isRegistration ? true : null" href="#exampledropdownDropdown" aria-expanded="false"
-            data-toggle="collapse"> <i class="icon-interface-windows"></i>PG Setup </a>
-          <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-            <li *ngIf="menu.indexOf('provider_index') !=-1"><a routerLink="/provider">Provider</a></li>
-            <li *ngIf="menu.indexOf('card_transaction_settings_index') !=-1"><a routerLink="/transManager">Trans
-                Manager</a></li>
-            <li *ngIf="menu.indexOf('bin_index') !=-1"><a routerLink="/bin">BIN</a></li>
-          </ul>
-        </li>
-        <li *ngIf="menu.indexOf('user_index') !=-1"><a [class.disabled]="isRegistration ? true : null"
-            routerLink="/users/view"> <i class="fa fa-bar-chart"></i>Users</a>
-        </li>
-        <li *ngIf="menu.indexOf('role_index') !=-1 && isMainMerchant === 1"><a
-            [class.disabled]="isRegistration ? true : null" routerLink="/roles/view"> <i
-              class="fa fa-bar-chart"></i>Roles</a></li>
-        <li *ngIf="menu.indexOf('payment_index') !=-1"><a [class.disabled]="isRegistration ? true : null"
-            routerLink="/transaction/view">
-            <i class="icon-grid"></i>Transactions
-          </a>
-        </li>
+        
         <!-- <li *ngIf="menu.indexOf('bank_index') !=-1"><a routerLink="/bank/view"> <i class="icon-grid"></i>Bank</a></li> -->
-        <li><a [class.disabled]="isRegistration ? true : null" routerLink="/settings"> <i
-              class="icon-grid"></i>Settings</a></li>
+        <li><a  routerLink="/logs"> <i
+              class="icon-grid"></i>Logs</a></li>
         <li><a (click)="logOut()"> <i class="fa fa-power-off"></i>logout</a></li>
       </ul>
     </div>
@@ -76,7 +53,8 @@
           <div class="navbar-header">
             <a id="toggle-btn"  (click)="toggleMenu()"  class="menu-btn"><i class="icon-bars"> </i></a>
             <a routerLink="/dashboard" style="color: black;" class="navbar-brand">
-              <div class="brand-text d-none d-md-inline-block"><span>{{ user.businessName }}</span>
+              <div class="brand-text d-none d-md-inline-block"> 
+                <!-- <span>{{ user.businessName }}</span>  -->
                 <!-- <strong class="text-primary">Dashboard</strong> -->
               </div>
             </a></div>
@@ -101,7 +79,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
-          <p>XPRESS PAYMENT SOLUTIONS LIMITED &copy; 2017-2019</p>
+          <p>BluPay &copy; 2019</p>
         </div>
       </div>
     </div>

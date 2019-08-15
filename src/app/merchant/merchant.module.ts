@@ -1,24 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataTablesModule } from 'angular-datatables';
-import { VeiwMerchantComponent } from './veiw-merchant/veiw-merchant.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MerchantComponent } from './merchant.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { NgxPaginationModule } from 'ngx-pagination';
-// import { WavesModule, SelectModule } from 'ng-uikit-pro-standard';
 
 @NgModule({
-  declarations: [VeiwMerchantComponent],
+  declarations: [MerchantComponent],
   imports: [
     CommonModule,
-    DataTablesModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgxSpinnerModule,
-    PdfViewerModule,
-    NgxPaginationModule
+    FormsModule,
+    NgxSpinnerModule
   ]
 })
 export class MerchantModule { }

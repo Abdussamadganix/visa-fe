@@ -38,27 +38,27 @@ export class PageFrameComponent implements OnInit {
     //   mergeMap((route) => route.data),
     // ).subscribe((event) => {
     //   // this.titleService.setTitle(event['title']);
-    this.docs = this.sharedService.docsUrl;
-    // });
-    this.fullName = this.sharedService.getFullName();
-    this.lastLogin = this.sharedService.lastLogin();
-    this.isRegistrationComplete = this.sharedService.getisRegistrationComplete();
-    const regCompleted = this.sharedService.getRegistrationComplete();
+    // this.docs = this.sharedService.docsUrl;
+    // // });
+    // this.fullName = this.sharedService.getFullName();
+    // this.lastLogin = this.sharedService.lastLogin();
+    // this.isRegistrationComplete = this.sharedService.getisRegistrationComplete();
+    // const regCompleted = this.sharedService.getRegistrationComplete();
     const load9 = './assets/custom/js/custom.js';
     const load10 = './assets/new_vendor/js/front.js';
-    this.isMainMerchant = this.sharedService.getIsMainMerchant();
+    // this.isMainMerchant = this.sharedService.getIsMainMerchant();
     this.jscript.load(load9).then(e => true)
       .catch(e => false);
       this.jscript.load(load10).then(e => true)
       .catch(e => false);
-    this.menu = this.sharedService.getUserPermistions();
-    this.user = this.sharedService.getUser();
-    if (this.isRegistrationComplete === 0 && (regCompleted === null || regCompleted === undefined)) {
-      this.isRegistration = false;
-    } else {
-      this.isRegistration = false;
-    }
-    this.isRegistration = false;
+    // this.menu = this.sharedService.getUserPermistions();
+    // this.user = this.sharedService.getUser();
+    // if (this.isRegistrationComplete === 0 && (regCompleted === null || regCompleted === undefined)) {
+    //   this.isRegistration = false;
+    // } else {
+    //   this.isRegistration = false;
+    // }
+    // this.isRegistration = false;
   }
 
   toggleMenu() {

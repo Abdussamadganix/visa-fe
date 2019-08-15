@@ -15,34 +15,35 @@ export class PermisionsGuard implements CanActivate {
     const expectedRole = route.data.expectedPermission;
     const role = this.sharedService.permissionMatch(expectedRole);
     const isRegistrationComplete = this.sharedService.getisRegistrationComplete();
-    if (role === true && isRegistrationComplete === '0') {
-      swal({
-        title: 'Welcome!',
-        text: 'Kindly complete your you registration...',
-        type: 'info',
-        confirmButtonText: 'Ok',
-        customClass: 'login-alert',
-        allowOutsideClick: false
-      })
-        .then(() => {
-          this.router.navigateByUrl('/starter/business-information');
-        });
-      return true;
-    } else if (role === true && isRegistrationComplete === '1') {
-      return true;
-    } else {
-      swal({
-        title: 'Access Denied!',
-        text: 'You don\'t have access to this resource...',
-        type: 'info',
-        confirmButtonText: 'Ok',
-        customClass: 'login-alert',
-        allowOutsideClick: false
-      })
-        .then(() => {
-          this.router.navigateByUrl('/dashboard');
-        });
-      return false;
-    }
+    return true;
+    // if (role === true && isRegistrationComplete === '0') {
+    //   swal({
+    //     title: 'Welcome!',
+    //     text: 'Kindly complete your you registration...',
+    //     type: 'info',
+    //     confirmButtonText: 'Ok',
+    //     customClass: 'login-alert',
+    //     allowOutsideClick: false
+    //   })
+    //     .then(() => {
+    //       this.router.navigateByUrl('/starter/business-information');
+    //     });
+    //   return true;
+    // } else if (role === true && isRegistrationComplete === '1') {
+    //   return true;
+    // } else {
+    //   swal({
+    //     title: 'Access Denied!',
+    //     text: 'You don\'t have access to this resource...',
+    //     type: 'info',
+    //     confirmButtonText: 'Ok',
+    //     customClass: 'login-alert',
+    //     allowOutsideClick: false
+    //   })
+    //     .then(() => {
+    //       this.router.navigateByUrl('/dashboard');
+    //     });
+    //   return false;
+    // }
   }
 }

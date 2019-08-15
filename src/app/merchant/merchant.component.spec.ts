@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VeiwMerchantComponent } from './veiw-merchant.component';
+import { MerchantComponent } from './merchant.component';
 
-describe('VeiwMerchantComponent', () => {
-  let component: VeiwMerchantComponent;
-  let fixture: ComponentFixture<VeiwMerchantComponent>;
+describe('MerchantComponent', () => {
+  let component: MerchantComponent;
+  let fixture: ComponentFixture<MerchantComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VeiwMerchantComponent ]
+      declarations: [ MerchantComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VeiwMerchantComponent);
+    fixture = TestBed.createComponent(MerchantComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

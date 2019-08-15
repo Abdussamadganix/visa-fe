@@ -13,11 +13,11 @@ export class PageFrameGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    const check = JSON.parse(this.sharedService.getCurrentUser());
-    if (check === null) {
-      this.router.navigate(['/home']);
-      return false;
-    }
+    // const check = JSON.parse(this.sharedService.getCurrentUser());
+    // if (check === null) {
+    //   this.router.navigate(['/home']);
+    //   return false;
+    // }
     return true;
   }
 }

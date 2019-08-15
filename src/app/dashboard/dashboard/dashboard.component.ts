@@ -117,6 +117,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.chart();
+    // this.chart();
   }
 }
