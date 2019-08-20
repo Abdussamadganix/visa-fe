@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
     };
     this.spinner.show();
     this.homeService.authUser(requestBody).subscribe(response => {
+console.log(response);
       this.spinner.hide();
       if (response.status === 'SUCCESS') {
         this.homeService.setCredentials(response.data);
