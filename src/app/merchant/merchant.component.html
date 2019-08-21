@@ -4,24 +4,18 @@
   <div class="container-fluid">
     <ul class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
-      <li class="breadcrumb-item active">Users</li>
+      <li class="breadcrumb-item active">Merchant</li>
     </ul>
   </div>
 </div>
 <section>
   <div class="container-fluid">
-    <br />
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <small>This feature will enable you to create other users and assign roles applicable to their job function on the
-        platform.</small>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+
     <header>
       <button data-toggle="modal"
         style="float: left; border-color: #272c4c !important; color: #272c4c !important;" type="button"
         data-toggle="modal" data-target="#inviteUserForm">Create Merchant</button>
+      <br />
     </header>
 
     <div class="row" [ngSwitch]="whichForm">
@@ -50,7 +44,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let merchant of merchants let i = index">
-                    <td>{{ i + indexPassed }}</td>
+                    <td>{{ i + 1 }}</td>
                     <td>{{ merchant.aliasId }}</td>
                     <td>{{ merchant.merchantId }}</td>
                     <td>{{ merchant.merchantCategoryCode }}</td>
@@ -206,7 +200,14 @@
                 <div class="col-md-6">
                   <div class="md-form">
                     <label for="materialLoginFormEmail" style="float: left">Point Of Initiation Method</label>
-                    <input formControlName="pointOfInitiationMethod" type="text" id="materialLoginFormEmail" class="form-control">
+                    <select class="form-control" id="pointOfInitiationMethod" formControlName="pointOfInitiationMethod">
+                      <option value="bankCode" disabled selected>Select Method</option>
+                      <option value="QR_STATIC_CODE" style="color: black !important;" >QR_STATIC_CODE</option>
+                      <option value="QR_DYNAMIC_CODE" style="color: black !important;" >QR_DYNAMIC_CODE</option>
+                      <option value="BLE_STATIC_CODE" style="color: black !important;" >BLE_STATIC_CODE</option>
+                      <option value="NFC_STATIC_CODE" style="color: black !important;" >NFC_STATIC_CODE</option>
+                      <option value="NFC_DYNAMIC_CODE" style="color: black !important;" >NFC_DYNAMIC_CODE</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -246,6 +247,7 @@
                   category.description }} )</option>
               </select>
             </div> -->
+              <br />
               <button style="float: left; margin-right: 10px;" class="btn btn-secondary" data-dismiss="modal"
                 aria-label="Close" type="submit">Close</button>&nbsp;&nbsp;&nbsp;
               <button style="float: left" class="btn btn-primary" type="submit">Submit</button>

@@ -10,16 +10,23 @@ const ApiBaseUrl = Constants.API_ENDPOINT;
 })
 export class LogsService {
 
-  readonly getLogAPi = ApiBaseUrl + '/v1/payments'
+  readonly getLogAPi = ApiBaseUrl + '/payments'
 
   constructor(private dataService: DataService) { }
   viewLogs(body) {
-    return this.dataService.get(this.getLogAPi + "?uniqueKey=" + body.uniqueKey)
+    return this.dataService.get(this.getLogAPi)
     .pipe(map(this.extractData),
     catchError(this.handleError));
   }
 
-  
+getTransactions(pageNum, pageSize, fromCreatedAt = '', toCreatedAt = '') {
+   return this.dataService.get(this.getLogAPi + '?pageNumber=' + pageNum +
+   '&pageSize=' + pageSize + '&fromCreatedAt=' + fromCreatedAt + '&toCreatedAt=' + toCreatedAt)
+   .pipe(map(this.extractData),
+   catchError(this.handleError));
+ }
+
+
   private handleError(error: Response | any) {
     return throwError(error);
   }

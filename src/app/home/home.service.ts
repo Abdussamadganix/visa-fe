@@ -11,11 +11,11 @@ const ApiBaseUrl = Constants.API_ENDPOINT;
 export class HomeService {
 
   // readonly loginApi = ApiBaseUrl + '/login';
-  readonly createUserApi = ApiBaseUrl + '/v1/users';
-  readonly authenticateUserApi = ApiBaseUrl + '/v1/users/authenticate';
-  readonly twoFALinkAPi = ApiBaseUrl + '/v1/users/2fa/link';
-  readonly confirmEmailApi = ApiBaseUrl + '/v1/users/confirmemail';
-  readonly resetPasswordApi = ApiBaseUrl + '/v1/users/passwordreset';
+  readonly createUserApi = ApiBaseUrl + '/users';
+  readonly authenticateUserApi = ApiBaseUrl + '/users/authenticate';
+  readonly twoFALinkAPi = ApiBaseUrl + '/users/2fa/link';
+  readonly confirmEmailApi = ApiBaseUrl + '/users/confirmemail';
+  readonly resetPasswordApi = ApiBaseUrl + '/users/passwordreset';
 
   constructor(private dataService: DataService) { }
 

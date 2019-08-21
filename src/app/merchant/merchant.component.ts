@@ -6,6 +6,7 @@ import { SharedService } from '../service/shared.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { MerchantService } from './merchant.service';
+import { PagerService } from 'src/app/service/pager.service';
 declare var $: any;
 
 
@@ -20,17 +21,32 @@ export class MerchantComponent implements OnInit {
   merchants: any = [];
   temp_var: boolean;
   viewMerchantModel: any;
+  pages: any;
+  pageNum: any;
+  firstPage: any;
+  lastPage: any;
+  pageNumber: any;
+  indexPassed: number;
+  pageSize: any;
+  totalElements: any;
   constructor(
     private merchantService: MerchantService,
     private router: Router,
     private sharedService: SharedService,
     private formBuilder: FormBuilder,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+  private pagerService: PagerService,
   ) { }
+
+private allItems: any[];
+  // pager object
+  pager: any = {};
+  // paged items
+  pagedItems: any[];
 
   ngOnInit() {
     this.whichForm = 'addMerchant';
-    this.getMerchant();
+    this.viewAllMerchant();
     this.merchantForm = this.formBuilder.group({
       aliasId: ['', Validators.required],
       merchantId: ['', Validators.required],
@@ -41,15 +57,28 @@ export class MerchantComponent implements OnInit {
       recipientName: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      
+
     });
+  }
+
+viewAllMerchant(pageNum = 0) {
+    const pageSize = 10;
+    this.spinner.show();
+    this.merchantService.viewAllMerchant(pageSize, pageNum).subscribe(response => {
+      //this.viewDownloadButton = true;
+      this.spinner.hide();
+      this.merchants = response.data.merchantAliases.content;
+       console.log( this.merchants);
+      this.totalElements = response.data.merchants.totalElements;
+      this.pager = this.pagerService.getPager(this.totalElements);
+    }, error => this.spinner.hide());
   }
 
   getMerchant(){
     const body = {
       "merchantAliasId": "4761100090708271"
     }
-    this.merchantService.viewMerchant(body).subscribe(response => { 
+    this.merchantService.viewMerchant(body).subscribe(response => {
       this.temp_var = true;
       console.log(response)
     }, error => {
@@ -114,7 +143,7 @@ export class MerchantComponent implements OnInit {
       merchantId: merchant.merchantId
     }
 
-    this.merchantService.deleteMerchant(body).subscribe(response => { 
+    this.merchantService.deleteMerchant(body).subscribe(response => {
       this.temp_var = true;
       console.log(response)
     }, error => {
@@ -122,7 +151,7 @@ export class MerchantComponent implements OnInit {
     });
   }
 
-  
+
 
   createMerchant(merchant) {
     const body = {

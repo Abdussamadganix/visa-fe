@@ -9,10 +9,11 @@ const ApiBaseUrl = Constants.API_ENDPOINT;
   providedIn: 'root'
 })
 export class MerchantService {
-  readonly createMerchantAPi = ApiBaseUrl + '/alias/merchants/create';
-  readonly getMerchantAPi = ApiBaseUrl + '/alias/merchants/get'
-  readonly updateMerchantAPi = ApiBaseUrl + '/alias/merchants/update'
-  readonly deleteMerchantAPi = ApiBaseUrl + '/alias/merchants/delete'
+  readonly createMerchantAPi = ApiBaseUrl + '/merchantalias/create';
+  readonly getMerchantAPi = ApiBaseUrl + '/merchantalias/get'
+  readonly updateMerchantAPi = ApiBaseUrl + '/merchantalias/update'
+  readonly deleteMerchantAPi = ApiBaseUrl + '/merchantalias/delete'
+  readonly fetchMerchantAPi = ApiBaseUrl + '/merchantalias'
 
   constructor(private dataService: DataService) { }
 
@@ -35,6 +36,12 @@ export class MerchantService {
 
   deleteMerchant(body) {
     return this.dataService.post(this.deleteMerchantAPi, body)
+    .pipe(map(this.extractData),
+    catchError(this.handleError));
+  }
+
+  viewAllMerchant(pageSize, pageNum) {
+    return this.dataService.get(this.fetchMerchantAPi + `?pageSize=${pageSize}&pageNumber=${pageNum}`)
     .pipe(map(this.extractData),
     catchError(this.handleError));
   }
