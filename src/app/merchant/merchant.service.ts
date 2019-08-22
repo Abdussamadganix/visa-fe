@@ -46,6 +46,18 @@ export class MerchantService {
     catchError(this.handleError));
   }
 
+searchMerchant(queryParam , paging) {
+    if (paging) {
+      queryParam = queryParam + paging;
+    } else {
+      queryParam = queryParam;
+    }
+    return this.dataService.get(this.fetchMerchantAPi + queryParam)
+    .pipe(map(this.extractData),
+    catchError(this.handleError));
+  }
+
+
   private handleError(error: Response | any) {
     return throwError(error);
   }

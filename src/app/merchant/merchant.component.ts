@@ -74,6 +74,37 @@ viewAllMerchant(pageNum = 0) {
     }, error => this.spinner.hide());
   }
 
+newSearch(pageNum = 1, paginate = '') {
+    let queryPAram;
+    let paging;
+    if (paginate === 'paginate') {
+      const x = pageNum - 1;
+      const y = +x;
+      paging = '&pageNumber=' + y + '&pageSize=10';
+    }
+    // tslint:disable-next-line:max-line-length
+    //queryPAram = this.getQueryParams(this.startDate.nativeElement.value + ' 00:00:00', this.endDate.nativeElement.value + ' 23:59:59', 'false');
+    queryPAram = "";
+    this.merchantService.searchMerchant(queryPAram, paging).subscribe(response => {
+      this.merchants = response.data.merchants;
+      this.totalElements = response.data.merchants.totalElements;
+      this.pager = this.pagerService.getPager(this.totalElements, pageNum);
+    });
+
+  }
+
+getQueryParams(fromCreatedAt, toCreatedAt, all) {
+    this.merchants = [];
+    let queryPAram = '';
+
+    return queryPAram;
+  }
+
+  toTimestamp(date) {
+    const datum = Date.parse(date);
+    return datum;
+  }
+
   getMerchant(){
     const body = {
       "merchantAliasId": "4761100090708271"
