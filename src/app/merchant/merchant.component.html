@@ -40,6 +40,12 @@
                     <th class="th-sm">City</th>
                     <th class="th-sm">Country</th>
                     <!-- <th class="th-sm">Action</th> -->
+                    <th class="th-sm">Creation Status</th>
+                    <th class="th-sm">Update Status</th>
+                    <th class="th-sm">Delete Status</th>
+                    <th class="th-sm">Response Message</th>
+                    <th class="th-sm">Created Date</th>
+                    <th class="th-sm">Updated Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -54,6 +60,23 @@
                     <td>{{ merchant.recipientName }}</td>
                     <td>{{ merchant.city }}</td>
                     <td>{{ merchant.country }}</td>
+                    <td>
+
+                      <h5><span class="xp-status status_success" *ngIf="merchant.createStatus =='SUCCESSFUL';">Successful</span></h5>
+                      <h5 *ngIf="merchant.createStatus =='FAILED';"><span class="xp-status status_failed">Failed</span></h5>
+                    </td>
+                    <td>
+                      <h5><span class="xp-status status_success" *ngIf="merchant.updateStatus =='SUCCESSFUL';">Successful</span></h5>
+                      <h5 *ngIf="merchant.updateStatus =='FAILED';"><span class="xp-status status_failed">Failed</span></h5>
+                    </td>
+                    <td>
+                      <h5><span class="xp-status status_success" *ngIf="merchant.deleteStatus =='SUCCESSFUL';">Successful</span></h5>
+                      <h5 *ngIf="merchant.deleteStatus =='FAILED';"><span class="xp-status status_failed">Failed</span></h5>
+                    </td>
+                    <td>{{ merchant.errorReason}}</td>
+                    <td>{{ merchant.createdAt}}</td>
+                    <td>{{ merchant.updatedAt}}</td>
+
                     <!-- <td><button class="btn btn-primary" (click)="viewUser(user)">View</button></td> -->
                   </tr>
                 </tbody>
